@@ -1,0 +1,117 @@
+#include <iostream>
+using namespace std ; 
+struct node {
+  node* next ; 
+  int data ;
+};
+class s{
+    private:
+    node* head ;
+node* curr ; 
+public :
+s(){
+     head = NULL;
+ curr = head ; 
+} 
+
+void insert(int);
+void travers();
+void delet();
+int cou();
+node* search(int);
+void insertAtfirst(int );
+void list();
+};
+
+void s::insert(int d){
+    curr = head ;
+  
+    node* n = new node ;
+    n->next = NULL ; 
+    n->data = d ;
+    if(head==NULL){
+        head = n;
+    }
+    else {
+    while(curr->next!= NULL){
+        curr = curr->next ;
+    }
+    curr->next = n ;
+    }
+}
+
+void s::travers(){
+    if(head==NULL)
+    cout<<"list is empty\n";
+    for(curr = head ; curr!=NULL ;  curr= curr->next){
+    cout<<curr->data ;
+    }
+}
+void s::list(){
+    curr = head ;
+    node *p = new node ;
+    while (curr){
+        p=curr;
+        curr = curr->next ;
+        delete p;
+    }
+    head = NULL ;
+}
+int s::cou(){
+    int count = 0 ;
+        for(curr = head ; curr!= NULL ; curr = curr->next){
+    count++;
+    }
+    cout<<"\n the number of data inserted are" ;
+    return count ;
+
+}
+void s::insertAtfirst(int q){
+    curr = head ;
+    node* l = new node  ;
+    l->next  = head ;
+    l->data = q ;
+    head = l ;
+}
+
+node* s::search(int x){
+    for(curr=head ; curr ; curr=curr->next)
+    if(curr->data==x)
+    return curr ;
+    return NULL ;
+}
+void s::delet(){
+if(head==NULL)
+cout<<"list is empty";
+if(head->next==NULL){
+delete head ;
+head = NULL;}
+node* tail = head ; 
+node* pre = NULL;
+while(tail->next){
+pre = tail;
+tail= tail->next;}
+delete tail ;
+pre->next = NULL;
+}
+
+int main(){
+    s q;
+    q.insert(5);
+    q.insert(7);
+    q.insert(8);
+    q.insertAtfirst(4) ;
+    cout<<"the address for number 7 is: \t" ;
+    cout<<q.search(7) ;
+    cout<<q.cou();
+       cout<<"inserted number are :";
+    q.travers();
+       cout<<"\n";
+          cout<<"after deleting the number at the tail :";
+    q.delet();
+    q.travers();
+    cout<<"deleting all the list\n" ; 
+    q.list();
+    q.travers();
+    return 0 ;
+}
