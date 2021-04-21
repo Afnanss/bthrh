@@ -1,0 +1,107 @@
+
+#include <iostream>
+using namespace std ; 
+
+
+struct node {
+    int data ;
+    node* forw ;
+    node* back ;
+};
+class afnan {
+    private :
+node* head ;
+node* curr ;
+public :
+afnan(){
+    head = new node ;
+head->forw = head ;
+head->back = head ;
+ curr = head ; }
+ void AddNode(int) ;
+void traverseBackward();
+node*  find_max ();
+node* search(node* );
+void addBeforeAddress (node * , int  );
+};
+	 void afnan::AddNode(int val){
+   node* n = new node ;
+        n->data = val ;
+if(head==NULL){
+    head = n ;
+
+}
+else {
+   n->forw = head ;
+	     n->back = head ->back ;
+	     head->back->forw = n;
+	     head->back = n ;
+}}
+	 
+	 
+	 
+	 void afnan::traverseBackward(){
+	     if(head->forw == head )
+	     cout<<"* Empty!" ;
+	     else { 
+	         	 curr = head->back ;
+	         while(curr!= head )
+	         {
+	             cout<<curr->data<<"\t" ; 
+	              curr = curr->back ;
+	         
+	 }}cout<<"\n" ;}
+	 
+	 node* afnan:: find_max (){
+    int a =0;
+    node *s = new node ;
+    curr=head->forw ;
+    while (curr != head){
+    if(a<curr->data){
+        a = curr->data;
+        s = curr ;
+    }
+         else {
+             curr=curr->forw;
+         }
+    } 
+      if(a<curr->data){
+        a = curr->data;
+        s = curr ;
+    }
+    
+    return s;
+} 
+	 void afnan::addBeforeAddress (node * max_loc, int  t ) {
+        node * a = max_loc ; 
+         node *w = new node ;
+            w->data = t ;
+        if(a==NULL){
+        cout<<" max location not found\n" ;
+        cout<<"the value added at the head\n ";
+        head = w ;
+          w->forw = w ;
+        w->back= w ;}
+        else {
+            w->forw = a ;
+            w-> back = a->back ;
+            a->back->forw = w ;
+           a->back = w ;
+
+        }
+
+    }
+int main(){
+    afnan s;
+    int h,j,v;
+    cout << "* * * * * * * * * *\n\n\n\n\n WELCOME TO AFNAN'S PROGRAM! \n\n\n\n\n ";
+                while ( h != -1 ){
+    cout<<"what number do you want? :\n\n 1- insert values \n 2- traverseBackward \n 3- find max location \n 4- addBeforeAddress \n\n  * if you wanna exit press -1 * \n your number is : " ; 
+             cin>> h ;
+             switch(h){ 
+                 case 1: cout<<"enter a value to insert:" ; cin>>v; s.AddNode(v); cout<<"* INSERTED! * \n\n" ; break;
+                 case 2: cout<<"\n\nThe Elements in backward are: \n" ; s.traverseBackward() ; break ; cout<<"\n\n\n";
+                 case 3:           cout<<"The Max address is:"<< s.find_max() <<"\n\n\n"; cout<<"\n\n"; break; 
+                 case -1 : cout<< "see you soon! <3" ; break ;
+                 case 4: cout<<"Enter the value that you want to insert before the max address: " ; cin>> j ; s.addBeforeAddress(s.find_max(),j);cout<<"**INSERTED!*\n\n"; break;  
+                 default : cout<< "Opps! Invalid number, please try again\n\n" ;  } } }
