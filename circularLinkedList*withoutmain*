@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std ; 
+struct node {
+  node* next ; 
+  int data ;
+};
+class a{
+  private :   
+  node* head = new node ;
+node* curr = new node ;
+  public :
+  a(){
+      head->next = head ;
+  }
+  void insert(int);
+  void travers();
+};
+
+void a::insert(int d ){
+    curr = head->next ;
+    node* n = new node ;
+    n->next = head->next ;
+    n->data = d ;
+    head->next = n ;
+}
+void a::travers(){
+    for(curr = head->next ; curr!= head ; curr=curr->next)
+    cout<<"\n"<<curr->data ;
+    
+}
+
+int main()
+{ a s ;
+    s.insert(5);
+    s.insert(7);
+   s.travers();
+
+    return 0;
+}
